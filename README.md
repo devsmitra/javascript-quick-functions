@@ -1,6 +1,6 @@
-# Quick functions
+# Javascript Quick functions
 
-Javascript quick functions codes you will always need (https://github.com/devsmitra/quick-functions)
+Javascript quick functions codes you will always need (https://devsmitra.github.io/javascript-quick-functions)
 
 # Array
 
