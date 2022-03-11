@@ -1,6 +1,6 @@
 # Quick functions
 
-Javascript codes you will always need
+Javascript quick functions codes you will always need (https://github.com/devsmitra/quick-functions)
 
 # Array
 
@@ -18,6 +18,11 @@ Javascript codes you will always need
 
     const fromPairs = (pairs) => pairs.reduce((a, b) => ({ ...a, [b[0]]: b[1] }), {});
     console.log(fromPairs([['a', 1], ['b', 2], ['c', 3]])); // { a: 1, b: 2, c: 3 }
+
+### Remove Duplicated from Array
+
+    const removeDuplicated = (arr) => [...new Set(arr)];
+    console.log(removeDuplicated([1, 2, 3, 3, 4, 4, 5, 5, 6])); // Result: [ 1, 2, 3, 4, 5, 6 ]
 
 # Numbers
 
@@ -50,12 +55,17 @@ Javascript codes you will always need
     };
     console.log(median([1, 2, 3, 4])); // 2.5
 
-### Find largest numbers in array
+### Find largest numbers
 
         const findLargest = (arr) => arr.map(subArr => Math.max(...subArr));
         console.log(findLargest([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]])); // [5, 27, 39, 1001]
 
-### Find smallest numbers in array
+### Find average of Numbers
+
+    const findAverage = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+    console.log(findAverage([1, 2, 3, 4])); // 2.5
+
+### Find smallest numbers
 
         const findSmallest = (arr) => arr.map(subArr => Math.min(...subArr));
         console.log(findSmallest([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]])); // [1, 18, 32, 857]
@@ -149,3 +159,29 @@ Javascript codes you will always need
 
     const getSecondsUntilMidnight = (date) => (24 - date.getHours()) * 60 * 60 + (60 - date.getMinutes()) * 60 + (60 - date.getSeconds());
     console.log(getSecondsUntilMidnight(new Date())); // 86400
+
+### Log Time from Date
+
+    const logTime = date => date.toTimeString().slice(0, 8);
+    logTime(new Date()); // 09:57:37
+
+
+    const logTime = date => date.toLocaleTimeString('en-GB');
+    logTime(new Date()); // 09:57:37
+
+# Styling
+
+### Generate a random color
+
+    const getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    console.log(getRandomColor()); // #f0f0f0
+
+    const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")}`;
+    console.log(randomHex()); // #f0f0f0
+
+# Window
+
+### Get selected text
+
+    const getSelectedText = () => window.getSelection().toString();
+    console.log(getSelectedText()); // Hello World

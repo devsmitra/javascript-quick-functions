@@ -1,1 +1,9 @@
+# Site Settings
+locale: "en-US"
+title: "Javascript Quick Functions | Rahul Sharma (DevsMitra)"
+title_separator: "-"
+description: &description "Javascript quick functions codes you will always need"
+url: https://devsmitra.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl: "/" # the subpath of your site, e.g. "/blog"
+
 theme: jekyll-theme-cayman
