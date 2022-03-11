@@ -1,10 +1,46 @@
 # Javascript Quick functions
 
-Javascript quick functions codes you will always need (https://devsmitra.github.io/javascript-quick-functions)
+Javascript quick functions codes you will always need
+
+# [Demo](https://devsmitra.github.io/javascript-quick-functions)
+
+# Functions
+
+### A regular function
+
+    function sum(a, b) {
+        return a + b;
+    }
+
+### Function expression
+
+    const sum = function(a, b) {
+        return a + b;
+    }
+
+### Arrow function
+
+    const sum = (a, b) => {
+        return a + b;
+    }
+    // OR
+    const sum = (a, b) => a + b;
+
+### Generator function
+
+    function* indexGenerator(){
+        let index = 0;
+        while(true) {
+            yield index++;
+        }
+    }
+    const g = indexGenerator();
+    console.log(g.next().value); // => 0
+    console.log(g.next().value); // => 1
 
 # Array
 
-### Shuffling an array is super easy with sort and random methods.
+### Shuffling an array
 
     const shuffleArray = (arr) => arr.sort(() => 0.5 - Math.random());
     console.log(shuffleArray([1, 2, 3, 4])); // [3, 2, 1, 4]
@@ -23,6 +59,9 @@ Javascript quick functions codes you will always need (https://devsmitra.github.
 
     const removeDuplicated = (arr) => [...new Set(arr)];
     console.log(removeDuplicated([1, 2, 3, 3, 4, 4, 5, 5, 6])); // Result: [ 1, 2, 3, 4, 5, 6 ]
+
+    const removeDuplicate = (arr) => Object.values(arr.reduce((a, b) => a[b] ? a : {...a, [b]: b}, {}));
+    console.log(removeDuplicate([1, 2, 3, 3])); // Result: [ 1, 2, 3, ]
 
 # Numbers
 
@@ -118,6 +157,26 @@ Javascript quick functions codes you will always need (https://devsmitra.github.
 
     const findVowel = (str) => str.match(/[aeiou]/gi);
     console.log(findVowel('hello')); // ['e', 'o']
+
+### Email validator
+
+    const validateEmail = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    };
+    console.log(validateEmail('abc@aaa.co'); // true
+
+### Validate only character and space
+
+    const validateName = (name) => /^[A-Za-z\s]+$/.test(name);
+    console.log(validateName('abc')); // true
+    console.log(validateName('123')); // false
+
+### Validate only number
+
+    const validateNumber = (number) => /^[0-9]+$/.test(number);
+    console.log(validateNumber('123')); // true
+    console.log(validateNumber('abc')); // false
 
 # Date
 
