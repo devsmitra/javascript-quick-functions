@@ -18,6 +18,8 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Function expression](#function-expression)
 - [Arrow function](#arrow-function)
 - [Generator function](#generator-function)
+- [Time the execution of your code](#time-the-execution-of-your-code)
+- [Evaluate a string](#evaluate-a-string)
 
 [Array](#array)
 
@@ -50,6 +52,7 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Convert array to object](#convert-array-to-object)
 - [Find intersection of two arrays](#find-intersection-of-two-arrays)
 - [Remove falsy values from an array](#remove-falsy-values-from-an-array)
+- [Rounding number to N decimal place](#rounding-number-to-n-decimal-place)
 
 [String](#string)
 
@@ -62,7 +65,10 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Email validator](#email-validator)
 - [Validate only character and space](#validate-only-character-and-space)
 - [Validate only number](#validate-only-number)
-- [Date & Object](#date--object)
+- [Casting values in arrays using map](#casting-values-in-arrays-using-map)
+
+[Date & Object](#date--object)
+
 - [Check object is empty or not](#check-object-is-empty-or-not)
 - [Get the current date](#get-the-current-date)
 - [Find the day of the week](#find-the-day-of-the-week)
@@ -71,6 +77,7 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Find the current month](#find-the-current-month)
 - [Find the number of seconds until midnight](#find-the-number-of-seconds-until-midnight)
 - [Log Time from Date](#log-time-from-date)
+- [Format JSON output with spaces](#format-json-output-with-spaces)
 
 [Styling](#styling)
 
@@ -79,7 +86,9 @@ Most of you probably already know them, lodash/underscore was built to provide u
 [Window](#window)
 
 - [Get selected text](#get-selected-text)
-- [Data Structures](#data-structures)
+
+[Data Structures](#data-structures)
+
 - [Create a stack](#create-a-stack)
 - [Create a queue](#create-a-queue)
 
@@ -116,6 +125,19 @@ Most of you probably already know them, lodash/underscore was built to provide u
     const g = indexGenerator();
     console.log(g.next().value); // => 0
     console.log(g.next().value); // => 1
+
+### Time the execution of your code
+
+    console.time('time');
+    for (let i = 0; i < 1000000; i++) {
+        // do something
+    }
+    console.timeEnd('time'); // time: 0.827ms
+
+### Evaluate a string
+
+    const toJavascript = (str) => eval(str);
+    toJavascript("alert('Hello World')")
 
 # Array
 
@@ -272,6 +294,11 @@ Most of you probably already know them, lodash/underscore was built to provide u
     const compact = (arr) => arr.filter(Boolean);
     console.log(compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])); // [1, 2, 3, 'a', 's', 34]
 
+### Rounding number to N decimal place
+
+    const round = (num, decimals = 0) => num.toFixed(decimals);
+    console.log(round(1.005, 2)); // 1.00
+
 # String
 
 ### Reverse String
@@ -323,6 +350,11 @@ Most of you probably already know them, lodash/underscore was built to provide u
     const validateNumber = (number) => /^[0-9]+$/.test(number);
     console.log(validateNumber('123')); // true
     console.log(validateNumber('abc')); // false
+
+### Casting values in arrays using map
+
+    const castArray = (arr) => arr.map(Number);
+    console.log(castArray(['1', '2', [3]])); // [1, 2, 3]
 
 # Date & Object
 
@@ -378,6 +410,11 @@ Most of you probably already know them, lodash/underscore was built to provide u
 
     const logTime = date => date.toLocaleTimeString('en-GB');
     logTime(new Date()); // 09:57:37
+
+### Format JSON output with spaces
+
+        const formatJSON = (json) => JSON.stringify(json, null, 2);
+        console.log(formatJSON({ a: 1, b: 2 }));
 
 # Styling
 
