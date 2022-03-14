@@ -1,12 +1,91 @@
 # Javascript Quick functions
 
-Javascript quick functions codes you will always need
+Most of you probably already know them, lodash/underscore was built to provide utility functions for common tasks in Javascript. But some you don’t want to install a package for small use case. So I created this file to provide a quick access to the most used functions. I hope you will find it useful.
 
-# [Demo](https://devsmitra.github.io/javascript-quick-functions)
+### [Demo & Reference](https://devsmitra.github.io/javascript-quick-functions)
+
+---
+
+# Tools used
+
+[Table of contents Builder](https://luciopaiva.com/markdown-toc/)
+
+# Table of contents
+
+[Functions](#functions)
+
+- [Regular function](#regular-function)
+- [Function expression](#function-expression)
+- [Arrow function](#arrow-function)
+- [Generator function](#generator-function)
+
+[Array](#array)
+
+- [Create an array of numbers from 1 to n](#create-an-array-of-numbers-from-1-to-n)
+- [Create an array of numbers from 1 to n with a step](#create-an-array-of-numbers-from-1-to-n-with-a-step)
+- [Create an array and fill it with a value](#create-an-array-and-fill-it-with-a-value)
+- [Shuffling an array](#shuffling-an-array)
+- [Convert an object into a list of `[key, value]` pairs](#convert-an-object-into-a-list-of-key-value-pairs)
+- [Convert a list of `[key, value]` pairs into an object](#convert-a-list-of-key-value-pairs-into-an-object)
+- [Remove an element from an array](#remove-an-element-from-an-array)
+- [Remove Duplicated from Array](#remove-duplicated-from-array)
+
+[Numbers](#numbers)
+
+- [Generate random number](#generate-random-number)
+- [Generate random number with a step](#generate-random-number-with-a-step)
+- [Number is even or not](#number-is-even-or-not)
+- [Number is odd or not](#number-is-odd-or-not)
+- [Find the factorial of a number](#find-the-factorial-of-a-number)
+- [Find the sum of an array](#find-the-sum-of-an-array)
+- [Find median of an array](#find-median-of-an-array)
+- [Find largest numbers](#find-largest-numbers)
+- [Find average of Numbers](#find-average-of-numbers)
+- [Find smallest numbers](#find-smallest-numbers)
+- [Find mode of an array](#find-mode-of-an-array)
+- [Find the range of an array](#find-the-range-of-an-array)
+- [Pick a random element from an array](#pick-a-random-element-from-an-array)
+- [Map an array without .map()](#map-an-array-without-map)
+- [Empty an array without .splice()](#empty-an-array-without-splice)
+- [Convert array to object](#convert-array-to-object)
+- [Find intersection of two arrays](#find-intersection-of-two-arrays)
+- [Remove falsy values from an array](#remove-falsy-values-from-an-array)
+
+[String](#string)
+
+- [Reverse String](#reverse-string)
+- [Find Longest Word in a String](#find-longest-word-in-a-string)
+- [Generate Title Case](#generate-title-case)
+- [Is String Palindrome](#is-string-palindrome)
+- [Copy to Clipboard](#copy-to-clipboard)
+- [Find a vowel in a string](#find-a-vowel-in-a-string)
+- [Email validator](#email-validator)
+- [Validate only character and space](#validate-only-character-and-space)
+- [Validate only number](#validate-only-number)
+- [Date & Object](#date--object)
+- [Check object is empty or not](#check-object-is-empty-or-not)
+- [Get the current date](#get-the-current-date)
+- [Find the day of the week](#find-the-day-of-the-week)
+- [Find the day of the year](#find-the-day-of-the-year)
+- [Find the number of days in a month](#find-the-number-of-days-in-a-month)
+- [Find the current month](#find-the-current-month)
+- [Find the number of seconds until midnight](#find-the-number-of-seconds-until-midnight)
+- [Log Time from Date](#log-time-from-date)
+
+[Styling](#styling)
+
+- [Generate a random color](#generate-a-random-color)
+
+[Window](#window)
+
+- [Get selected text](#get-selected-text)
+- [Data Structures](#data-structures)
+- [Create a stack](#create-a-stack)
+- [Create a queue](#create-a-queue)
 
 # Functions
 
-### A regular function
+### Regular function
 
     function sum(a, b) {
         return a + b;
@@ -40,6 +119,21 @@ Javascript quick functions codes you will always need
 
 # Array
 
+### Create an array of numbers from 1 to n
+
+    const range = (n) => Array.from({ length: n }, (_, i) => i + 1);
+    console.log(range(10)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+### Create an array of numbers from 1 to n with a step
+
+    const range = (n, step = 1) => Array.from({ length: n }, (_, i) => i * step);
+    console.log(range(10, 2)); // [1, 3, 5, 7, 9]
+
+### Create an array and fill it with a value
+
+    const fill = (len, value) => Array(len).fill(value);
+    console.log(fill(3, 0)); // [0, 0, 0]
+
 ### Shuffling an array
 
     const shuffleArray = (arr) => arr.sort(() => 0.5 - Math.random());
@@ -55,6 +149,11 @@ Javascript quick functions codes you will always need
     const fromPairs = (pairs) => pairs.reduce((a, b) => ({ ...a, [b[0]]: b[1] }), {});
     console.log(fromPairs([['a', 1], ['b', 2], ['c', 3]])); // { a: 1, b: 2, c: 3 }
 
+### Remove an element from an array
+
+    const removeElement = (arr, element) => arr.filter(e => e !== element);
+    console.log(removeElement([1, 2, 3, 4], 2)); // [1, 3, 4]
+
 ### Remove Duplicated from Array
 
     const removeDuplicated = (arr) => [...new Set(arr)];
@@ -64,6 +163,16 @@ Javascript quick functions codes you will always need
     console.log(removeDuplicate([1, 2, 3, 3])); // Result: [ 1, 2, 3, ]
 
 # Numbers
+
+### Generate random number
+
+    const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log(random(1, 10)); // Result: 1 ~ 10
+
+### Generate random number with a step
+
+    const random = (min, max, step = 1) => Math.floor(Math.random() * (max - min + 1)) * step + min;
+    console.log(random(1, 10, 2)); // Result: 1 ~ 10 with step 2
 
 ### Number is even or not
 
@@ -126,6 +235,43 @@ Javascript quick functions codes you will always need
     const range = (arr) => Math.max(...arr) - Math.min(...arr);
     console.log(range([1, 2, 3, 4])); // 3
 
+### Pick a random element from an array
+
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    console.log(pick([1, 2, 3, 4])); // 2
+
+### Map an array without .map()
+
+    const map = (arr, cb) => Array.from(arr, cb);
+    console.log(map([1, 2, 3, 4], n => n * 2)); // [2, 4, 6, 8]
+
+### Empty an array without .splice()
+
+    const empty = (arr) => {
+        arr.length = 0;
+        return arr;
+    };
+    console.log(empty([1, 2, 3, 4])); // []
+
+### Convert array to object
+
+    const toObject = (arr) => ({ ...arr });
+    console.log(toObject(['a', 'b'])); // { 0: 'a', 1: 'b' }
+
+### Find intersection of two arrays
+
+    const intersection = (arr1, arr2) => {
+        const set = new Set(arr1);
+        return arr2.filter((x) => set.has(x));
+    };
+
+    console.log(intersection([1, 2, 3], [2, 3, 4])); // [2, 3]
+
+### Remove falsy values from an array
+
+    const compact = (arr) => arr.filter(Boolean);
+    console.log(compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])); // [1, 2, 3, 'a', 's', 34]
+
 # String
 
 ### Reverse String
@@ -178,7 +324,12 @@ Javascript quick functions codes you will always need
     console.log(validateNumber('123')); // true
     console.log(validateNumber('abc')); // false
 
-# Date
+# Date & Object
+
+### Check object is empty or not
+
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
+    console.log(isEmpty({})); // true
 
 ### Get the current date
 
@@ -244,3 +395,45 @@ Javascript quick functions codes you will always need
 
     const getSelectedText = () => window.getSelection().toString();
     console.log(getSelectedText()); // Hello World
+
+# Data Structures
+
+### Create a stack
+
+    const Stack = () => {
+        let data = [];
+        return {
+            push(item) {
+                data.push(item);
+            },
+            pop() {
+                return data.pop();
+            },
+            peek() {
+                return data[data.length - 1];
+            },
+            get length() {
+                return data.length;
+            }
+        };
+    };
+
+### Create a queue
+
+    const Queue = () => {
+        let data = [];
+        return {
+            push(item) {
+                data.push(item);
+            },
+            pop() {
+                return data.shift();
+            },
+            peek() {
+                return data[0];
+            },
+            get length() {
+                return data.length;
+            }
+        };
+    };
