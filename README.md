@@ -6,10 +6,6 @@ Most of you probably already know them, lodash/underscore was built to provide u
 
 ---
 
-# Tools used
-
-[Table of contents Builder](https://luciopaiva.com/markdown-toc/)
-
 # Table of contents
 
 [Functions](#functions)
@@ -78,12 +74,15 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Find the number of seconds until midnight](#find-the-number-of-seconds-until-midnight)
 - [Log Time from Date](#log-time-from-date)
 - [Format JSON output with spaces](#format-json-output-with-spaces)
+- [Deep clone an object](#deep-clone-an-object)
 
 [Styling](#styling)
 
 - [Generate a random color](#generate-a-random-color)
+- [Convert to rem](#convert-to-rem)
+- [Styled Components get color from theme](#styled-components-get-color-from-theme)
 
-[Window](#window)
+[Window & Dom](#window--dom)
 
 - [Get selected text](#get-selected-text)
 
@@ -91,6 +90,8 @@ Most of you probably already know them, lodash/underscore was built to provide u
 
 - [Create a stack](#create-a-stack)
 - [Create a queue](#create-a-queue)
+- [Recursion](#recursion)
+- [Memoization (cache)](#memoization-cache)
 
 # Functions
 
@@ -416,6 +417,21 @@ Most of you probably already know them, lodash/underscore was built to provide u
         const formatJSON = (json) => JSON.stringify(json, null, 2);
         console.log(formatJSON({ a: 1, b: 2 }));
 
+### Deep clone an object
+
+    const clone = (obj) => JSON.parse(JSON.stringify(obj));
+    console.log(clone({ a: 1, b: 2 })); // { a: 1, b: 2 }
+
+    // OR
+
+    const deepCopy = (obj, copy = {}) => {
+        if (!obj  || typeof obj !== "object") return obj;
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) copy[key] = deepCopy(obj[key]);
+        }
+        return copy;
+    };
+
 # Styling
 
 ### Generate a random color
@@ -426,7 +442,23 @@ Most of you probably already know them, lodash/underscore was built to provide u
     const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")}`;
     console.log(randomHex()); // #f0f0f0
 
-# Window
+### Convert to rem
+
+    const toRem = (px) => `${px / 16}rem`;
+    console.log(toRem(16)); // 1rem
+
+### Styled Components get color from theme
+
+Off topic but very useful
+
+    const getPrimaryMain = props => props.theme.main
+
+    const Button = styled.button`
+        color: ${getPrimaryMain};
+        border: 2px solid ${getPrimaryMain};
+    `;
+
+# Window & Dom
 
 ### Get selected text
 
@@ -474,3 +506,34 @@ Most of you probably already know them, lodash/underscore was built to provide u
             }
         };
     };
+
+### Recursion
+
+    const range = (n) => {
+        if (n === 0) return;
+        console.log(n);
+        range(n - 1);
+    };
+    console.log(range(5));
+
+### Memoization (cache)
+
+Try the following code without memo and with memo.
+
+    const fib = (n) => {
+        if (n < 2) return n;
+        return fib(n - 1, memo) + fib(n - 2, memo);
+    };
+    console.log(fib(40)); // Browser crash or timeout
+
+    const fib = (n, memo = {}) => {
+        if (n < 2) return n;
+        if (memo[n]) return memo[n];
+        memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+        return memo[n];
+    };
+    console.log(fib(40)); // 102334155
+
+# Tools used
+
+[Table of contents Builder](https://luciopaiva.com/markdown-toc/)
