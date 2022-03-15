@@ -27,6 +27,7 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Convert a list of `[key, value]` pairs into an object](#convert-a-list-of-key-value-pairs-into-an-object)
 - [Remove an element from an array](#remove-an-element-from-an-array)
 - [Remove Duplicated from Array](#remove-duplicated-from-array)
+- [Swap variables or values](#swap-variables-or-values)
 
 [Numbers](#numbers)
 
@@ -75,6 +76,13 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Log Time from Date](#log-time-from-date)
 - [Format JSON output with spaces](#format-json-output-with-spaces)
 - [Deep clone an object](#deep-clone-an-object)
+
+[Promises](#promises)
+
+- [Wait for a promise to resolve](#wait-for-a-promise-to-resolve)
+- [Is function async](#is-function-async)
+- [Callback to Promise](#callback-to-promise)
+- [Promise retry](#promise-retry)
 
 [Styling](#styling)
 
@@ -184,6 +192,13 @@ Most of you probably already know them, lodash/underscore was built to provide u
 
     const removeDuplicate = (arr) => Object.values(arr.reduce((a, b) => a[b] ? a : {...a, [b]: b}, {}));
     console.log(removeDuplicate([1, 2, 3, 3])); // Result: [ 1, 2, 3, ]
+
+### Swap variables or values
+
+    const swap = (a, b) => [b, a];
+    let a = 1, b = 2;
+    [b , a] = swap(a, b);
+    console.log(a, b); // 2, 1
 
 # Numbers
 
@@ -431,6 +446,39 @@ Most of you probably already know them, lodash/underscore was built to provide u
         }
         return copy;
     };
+
+# Promises
+
+### Wait for a promise to resolve
+
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    wait(1000).then(() => console.log('You\'ll see this after 1 second'));
+    await wait(1000); // Next line will be executed after 1 second
+
+### Is function async
+
+    const isAsync = (fn) => fn.constructor.name === 'AsyncFunction';
+    console.log(isAsync(async () => {})); // true
+
+### Callback to Promise
+
+    const promisify = (fn) => (...args) => {
+        return new Promise((res, reject) => fn(...args, (err, data) => err ? reject(err) : res(data)));
+    }
+
+### Promise retry
+
+    const retry = (fn, times = 3) => {
+        return (...args) => new Promise((resolve, reject) => {
+            const attempt = (n) => {
+                fn(...args).then(resolve).catch(err => {
+                    if (n === times) return reject(err);
+                    attempt(n + 1);
+                });
+            }
+            attempt(1);
+        });
+    }
 
 # Styling
 
