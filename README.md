@@ -28,6 +28,8 @@ Most of you probably already know them, lodash/underscore was built to provide u
 - [Remove an element from an array](#remove-an-element-from-an-array)
 - [Remove Duplicated from Array](#remove-duplicated-from-array)
 - [Swap variables or values](#swap-variables-or-values)
+- [Remove element from array](#remove-element-from-array)
+- [Merge 2 Arrays](#merge-2-arrays)
 
 [Numbers](#numbers)
 
@@ -237,6 +239,27 @@ let a = 1,
   b = 2;
 [b, a] = swap(a, b);
 console.log(a, b); // 2, 1
+```
+
+### Remove element from array
+
+```javascript
+const list = [1, 2, 3, 4, 5];
+list.length = 3;
+console.log(list); // [1, 2, 3]
+```
+
+### Merge 2 Arrays
+
+```javascript
+const list = [1, 2, 3, 4, 5];
+const list2 = [6, 7, 8, 9, 10];
+
+const merge = (arr1, arr2) => [...arr1, ...arr2];
+const merge = (arr1, arr2) => arr1.concat(arr2);
+
+// OR
+const merge = (arr1, arr2) => arr1.push(...arr2); // this will update the first array
 ```
 
 # Numbers
