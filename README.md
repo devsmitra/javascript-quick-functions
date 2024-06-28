@@ -202,8 +202,10 @@ console.log(toPairs({ a: 1, b: 2, c: 3 })); // [['a', 1], ['b', 2], ['c', 3]]
 ### Convert a list of `[key, value]` pairs into an object
 
 ```javascript
-const fromPairs = (pairs) =>
-  pairs.reduce((a, b) => ({ ...a, [b[0]]: b[1] }), {});
+const fromPairs = (pairs) => Object.fromEntries(pairs);  
+
+
+const fromPairs = (pairs) => pairs.reduce((a, b) => ({ ...a, [b[0]]: b[1] }), {});
 console.log(
   fromPairs([
     ["a", 1],
